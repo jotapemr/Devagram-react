@@ -1,4 +1,4 @@
-import {useRef} from "react"
+import {useRef, useEffect} from "react"
 
 export function UploadImagem({
     className = '',
@@ -10,12 +10,11 @@ export function UploadImagem({
     const referenciaInput = useRef(null);
 
     useEffect(() => {
-        if (!aoSetarAReferencia) {
-            return;
+        if(!aoSetarAReferencia){
+            return
         }
-
-        aoSetarAReferencia(referenciaInput?.current);
-    }, [referenciaInput?.current]);
+        aoSetarAReferencia(referenciaInput?.current)
+    }, [referenciaInput?.current])
 
     const abrirSeletorArquivos = () => {
         referenciaInput?.current?.click();
