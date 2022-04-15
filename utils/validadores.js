@@ -24,3 +24,5 @@ export {
     validarSenha,
     validarConfirmacaoSenha
 }
+
+//o ? valida se a variável existe e se tem algum valor
