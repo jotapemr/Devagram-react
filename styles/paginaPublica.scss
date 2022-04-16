@@ -38,7 +38,7 @@
         }
     }
 
-    @media screen and (min-width: $desktopBreakpoint) {
+    @media screen and (min-width: $desktopBreakpoint) { //parte para o desktop
         flex-direction: row;
         padding: 0 140px;
         font-size: 18px;
