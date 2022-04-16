@@ -9,7 +9,6 @@ exibirMensagemValidacao = false,
 mensagemValidacao = "",
 aoAlteraValor
 
-
 ) {
     return(
         <div className="inputPublicoContainer">
