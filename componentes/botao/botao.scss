@@ -1,15 +1,12 @@
-@mixin botaoPrimario{
+@mixin botaoPrimario {
     background-color: $corPrimaria;
     color: $branco;
 }
-
 @mixin botaoInvertido {
     background-color: $branco;
     color: $corPrimaria;
     border: 1px solid $corPrimaria;
 }
-
-
 .btn {
     width: 100%;
     border: none;
@@ -35,4 +32,4 @@
     &:disabled {
         opacity: 0.5;
     }
-}
+} 

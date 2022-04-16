@@ -1,49 +1,89 @@
-import {useState} from "react"
-import inputPublico from "../inputPublico"
-import imagemEnvelope from '../../public/imagens/envelope.svg'
-import imagemChave from '../../public/imagens/chave.svg'
-import imagemLogo from '../../public/imagens/logo.svg'
-import Image from "next/image"
-import Botao from "../botao"
-import Link from "next/link"
+import {useState} from "react";
+import Image from "next/image";
+import Link from "next/link";
+import InputPublico from "../inputPublico";
+import Botao from "../botao";
+import {validarEmail, validarSenha} from "../../utils/validadores";
+import imagemEnvelope from "../../public/imagens/envelope.svg";
+import imagemChave from "../../public/imagens/chave.svg";
+import imagemLogo from "../../public/imagens/logo.svg";
+import UsuarioService from "../../services/UsuarioService";
+
+const usuarioService = new UsuarioService();
 
 export default function Login(){
-    const [email, setEmail] = useState("")
-    const [senha, setSenha] = useState("")
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+    const [estaSubmetendo, setEstaSubmetendo] = useState(false);
 
-    return(
-        <section className={`paginaLogin paaginaPublica`}>
+    const validarFormulario = () => {
+        return (
+            validarEmail(email)
+            && validarSenha(senha)
+        );
+    }
+
+    const aoSubmeter = async (e) => {
+        e.preventDefault();
+        if (!validarFormulario()) {
+            return;
+        }
+
+        setEstaSubmetendo(true);
+
+        try {
+            await usuarioService.login({
+                login: email,
+                senha
+            });
+
+        } catch (error){
+            alert(
+                "Erro ao realizar o login. " + error?.response?.data?.erro
+            );
+        }
+
+        setEstaSubmetendo(false);
+    } 
+
+    return (
+        <section className={`paginaLogin paginaPublica`}>
             <div className="logoContainer">
                 <Image
                     src={imagemLogo}
                     alt="logotipo"
-                    layout="fill"               
+                    layout="fill"
+                    className="logo"
                 />
             </div>
+
             <div className="conteudoPaginaPublica">
-                <form>
-                    <inputPublico
+                <form onSubmit={aoSubmeter}>
+                    <InputPublico
                         imagem={imagemEnvelope}
                         texto="E-mail"
                         tipo="email"
-                        aoAlteraValor = {e => setEmail(e.target.value)}
+                        aoAlterarValor={e => setEmail(e.target.value)}
                         valor={email}
+                        mensagemValidacao="O endereço informado é inválido"
+                        exibirMensagemValidacao={email && !validarEmail(email)} //validação
                     />
 
-                    <inputPublico
+                    <InputPublico
                         imagem={imagemChave}
                         texto="Senha"
                         tipo="password"
-                        aoAlteraValor = {e => setSenha(e.target.value)}
+                        aoAlterarValor={e => setSenha(e.target.value)}
                         valor={senha}
+                        mensagemValidacao="Precisa ter pelo menos 3 caracteres"
+                        exibirMensagemValidacao={senha && !validarSenha(senha)} //validação
                     />
 
                     <Botao
                         texto="Login"
                         tipo="submit"
-                        desabilitado={false}                   
+                        desabilitado={!validarFormulario() || estaSubmetendo}
                     />
-
                 </form>
 
                 <div className="rodapePaginaPublica">
@@ -52,5 +92,5 @@ export default function Login(){
                 </div>
             </div>
         </section>
-    )
+    );
 }
