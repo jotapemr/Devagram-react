@@ -22,4 +22,6 @@ export default class HttpService {
     get(url){
         this.axios.get(url)
     }
+
+   
 } 
