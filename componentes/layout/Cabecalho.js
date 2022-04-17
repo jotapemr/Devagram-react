@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useState } from 'react';
-import logoHorizontalImg from '../../public/imagens/logoHorizontalImg.svg';
+import logoHorizontalImg from '../../public/imagens/logoHorizontal.svg';
 import imagemLupa from '../../public/imagens/lupa.svg';
 
 
