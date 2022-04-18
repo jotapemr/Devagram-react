@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Postagem from "./Postagem";
 
 export function feed(){
     const [listaDePostagens, setListaDePostagens] = useState;
@@ -32,7 +33,9 @@ export function feed(){
 
     return (
         <div className="feedContainer">
-            {listaDePostagens}
+            {listaDePostagens.map(dadosPostagem => (
+                <Postagem key={dadosPostagem.id} {...dadosPostagem}/>
+            ))}
         </div>
     )
 }

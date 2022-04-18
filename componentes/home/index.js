@@ -3,7 +3,7 @@ import { feed } from '../feed';
 
 function Home({usuarioLogado}) {
     return (
-        <feed usuarioLogado={usuarioLogado}/>
+        <Feed usuarioLogado={usuarioLogado}/>
     )
 }
 
