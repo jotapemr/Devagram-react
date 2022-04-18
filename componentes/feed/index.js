@@ -31,6 +31,8 @@ export function feed(){
     }, [usuarioLogado])
 
     return (
-        <></>
+        <div className="feedContainer">
+            {listaDePostagens}
+        </div>
     )
 }
