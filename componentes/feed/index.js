@@ -14,7 +14,7 @@ export function feed(){
                         nome: 'Douglas',
                         avatar: null,
                     },
-                    fotoPost: '',
+                    fotoDoPost: '',
                     descricao:'',
                     likes: [],
                     comentarios:[
