@@ -1,73 +1,133 @@
-import Link from "next/link";
+import Image from "next/image"
+import Link from "next/link"
+import {useState} from "react"
 import Avatar from "../avatar"
-import Image from "next/image";
 import imgCurtir from '../../public/imagens/curtir.svg'
 import imgCurtido from '../../public/imagens/curtido.svg'
 import imgComentarioAtivo from '../../public/imagens/comentarioAtivo.svg'
 import imgComentarioCinza from '../../public/imagens/comentarioCinza.svg'
-import { useState } from "react";
+import {FazerComentario} from "./FazerComentario"
+import FeedService from "../../services/FeedService"
 
-const tamanhoLimiteDescricao = 90
+const tamanhoLimiteDescricao = 90;
+const feedService = new FeedService();
 
-export default function Postagem({   
+export default function Postagem({
+    id,
     usuario,
     fotoDoPost,
     descricao,
-    comentarios
-}){
-
+    comentarios,
+    usuarioLogado,
+    curtidas
+}) {
+    const [curtidasPostagem, setCurtidasPostagem] = useState(curtidas)
+    const [comentariosPostagem, setComentariosPostagem] = useState(comentarios)
+    const [deveExibirSecaoParaComentar, setDeveExibirSecaoParaComentar] = useState(false);
     const [tamanhoAtualDaDescricao, setTamanhoAtualDaDescricao] = useState(
         tamanhoLimiteDescricao
     )
-
     const exibirDescricaoCompleta = () => {
-        setTamanhoAtualDaDescricao(Number.MAX_SAFE_INTEGER)
+        setTamanhoAtualDaDescricao(Number.MAX_SAFE_INTEGER);
     }
 
-    const descricaoMaiorQueLimite = () =>{
-        return descricao.lenght > tamanhoAtualDaDescricao
+    const descricaoMaiorQueLimite = () => {
+        return descricao.length > tamanhoAtualDaDescricao;
     }
 
     const obterDescricao = () => {
-        let mensagem = descricao.substring(0, tamanhoAtualDaDescricao)
-        if(descricaoMaiorQueLimite()){
+        let mensagem = descricao.substring(0, tamanhoAtualDaDescricao);
+        if (descricaoMaiorQueLimite()) {
             mensagem += '...'
         }
-        return mensagem
+
+        return mensagem;
     }
 
-    return(
+    const obterImagemComentario = () => {
+        return deveExibirSecaoParaComentar
+            ? imgComentarioAtivo
+            : imgComentarioCinza;
+    }
+
+    const comentar = async (comentario) => {
+        try {
+            await feedService.adicionarComentario(id, comentario);
+            setDeveExibirSecaoParaComentar(false)
+            setComentariosPostagem([
+                ...comentariosPostagem,
+                {
+                    nome: usuarioLogado.nome,
+                    mensagem: comentario
+                }
+            ]);
+        } catch (e) {
+            alert(`Erro ao fazer comentário! ` + (e?.response?.data?.erro || ''))
+        }
+    }
+
+    const usuarioLogadoCurtiuPostagem = () => {
+        return curtidasPostagem.includes(usuarioLogado.id)
+    }
+
+    const alterarCurtida = async () => {
+        try {
+            await feedService.alterarCurtida(id);
+            if (usuarioLogadoCurtiuPostagem()) {
+                setCurtidasPostagem(
+                    curtidasPostagem.filter(idUsuarioQueCurtiu => idUsuarioQueCurtiu !== usuarioLogado.id)
+                )
+            } else {
+                setCurtidasPostagem([
+                    ...curtidasPostagem,
+                    usuarioLogado.id
+                ]);
+            }
+        } catch (e) {
+            alert(`Erro ao alterar a curtida! ` + (e?.response?.data?.erro || ''))
+        }
+    }
+
+    const obterImagemCurtida = () => {
+        return usuarioLogadoCurtiuPostagem()
+            ? imgCurtido
+            : imgCurtir;
+        
+    }
+
+    return (
         <div className="postagem">
             <Link href={`/perfil/${usuario.id}`}>
-                <section className="cabaçalhoPostagem">
-                    <Avatar src={usuario.avatar}/>
+                <section className="cabecalhoPostagem">
+                    <Avatar src={usuario.avatar} />
                     <strong>{usuario.nome}</strong>
                 </section>
             </Link>
 
             <div className="fotoDaPostagem">
-                <img src={''} alt='fotopostagem'/>
+                <img src={fotoDoPost} alt='foto da postagem' />
             </div>
 
             <div className="rodapeDaPostagem">
-                <div className="acoesPostagem">
+                <div className="acoesDaPostagem">
                     <Image
-                        src={imgCurtir}
-                        alt={'ícone curtir'}
+                        src={obterImagemCurtida()}
+                        alt='icone curtir'
                         width={20}
                         height={20}
-                        onClick={() => console.log('curtir')}
+                        onClick={alterarCurtida}
                     />
 
                     <Image
-                        src={imgComentarioCinza}
-                        alt={'ícone comentário'}
+                        src={obterImagemComentario()}
+                        alt='icone comentar'
                         width={20}
                         height={20}
+                        onClick={() => setDeveExibirSecaoParaComentar(!deveExibirSecaoParaComentar)}
                     />
 
                     <span className="quantidadeCurtidas">
-                        Curtido por <strong>testando</strong>
+                        Curtido por <strong> {curtidasPostagem.length} pessoas</strong>
                     </span>
                 </div>
 
@@ -76,24 +136,26 @@ export default function Postagem({
                     <p className="descricao">
                         {obterDescricao()}
                         {descricaoMaiorQueLimite() && (
-                            <span
-                                onClick={exibirDescricaoCompleta}
-                                className="exibirDescricaoCompleta">
+                            <span onClick={exibirDescricaoCompleta} className="exibirDescricaoCompleta">
                                 mais
                             </span>
                         )}
                     </p>
                 </div>
+
+                <div className="comentariosDaPublicacao">
+                    {comentariosPostagem.map((comentario, i) => (
+                        <div className="comentario" key={i}>
+                            <strong className="nomeUsuario">{comentario.nome}</strong>
+                            <p className="descricao">{comentario.mensagem}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
 
-            <div className="comentarioDaPublicacao">
-                {comentarios.map(comentario, i => (
-                    <div className="comentario" key={i}>
-                        <strong>{comentario.nome}</strong>
-                        <p className="descricao">{comentarios.mensagem}</p>
-                    </div>
-                ))}
-            </div>
+            {deveExibirSecaoParaComentar &&
+                <FazerComentario comentar={comentar} usuarioLogado={usuarioLogado} />
+            }
         </div>
-    )
+    );
 }
