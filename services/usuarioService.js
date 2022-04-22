@@ -2,18 +2,26 @@ import HttpService from "./HttpService.js";
 
 export default class UsuarioService extends HttpService {
     async login(credenciais) {
-        const { data } = await this.post('/login', credenciais);
+        const { data } = await this.post('/login', credenciais)
 
         localStorage.setItem("nome", data.nome);
-        localStorage.setItem("email", data.email);
-        localStorage.setItem("token", data.token);
+        localStorage.setItem("email", data.email)
+        localStorage.setItem("token", data.token)
 
         const usuario = await this.get('/usuario')
         localStorage.setItem('id', usuario.data._id)
 
         if (data.avatar) {
-            localStorage.setItem("avatar", data.avatar);
+            localStorage.setItem("avatar", data.avatar)
         }
+    }
+
+    async logout() {
+        localStorage.removeItem("nome")
+        localStorage.removeItem("email")
+        localStorage.removeItem("token")
+        localStorage.removeItem("id")
+        localStorage.removeItem("avatar")
     }
 
     async cadastro(dados) {

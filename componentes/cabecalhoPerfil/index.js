@@ -1,54 +1,67 @@
+import {useEffect, useState} from 'react'
+import {useRouter} from 'next/router'
+import Image from 'next/image'
 import imgSetaEsquerda from '../../public/imagens/setaEsquerda.svg'
-import cabecalhoComAcoes from '../cabecalhoComAcoes'
+import imgLogout from '../../public/imagens/logout.svg'
+import CabecalhoComAcoes from '../cabecalhoComAcoes'
 import Botao from '../botao'
 import Avatar from '../avatar'
-import { useEffect, useState } from 'react'
 import UsuarioService from '../../services/UsuarioService'
-import { useRouter } from 'next/router'
 
 const usuarioService = new UsuarioService()
 
 export default function CabecalhoPerfil({
-    usuario
+    usuario,
+    estaNoPerfilPessoal
 }) {
-    const[estaSeguindoUsuario,  setEstaSeguindoUsuario] = useState(false)
+    const [estaSeguindoOUsuario, setEstaSeguindoOUsuario] = useState(false)
     const [quantidadeSeguidores, setQuantidadeSeguidores] = useState(0)
     const router = useRouter()
 
     useEffect(() => {
-        if(usuario){
+        if (!usuario) {
             return
         }
-        setEstaSeguindoUsuario(usuario.segueEsseUsuario)
+
+        setEstaSeguindoOUsuario(usuario.segueEsseUsuario)
         setQuantidadeSeguidores(usuario.seguidores)
     }, [usuario])
 
-    const obterTextoBotaoSeguir = () => {
-        if(estaSeguindoUsuario){
+    const obterTextoBotaoPrincipal = () => {
+        if (estaNoPerfilPessoal) {
+            return 'Editar perfil'
+        }
+
+        if (estaSeguindoOUsuario) {
             return 'Deixar de seguir'
         }
-        return 'Seguir'
+
+        return 'Seguir';
     }
 
-    const obterCorDoBotaoSeguir = () => {
-        if(estaSeguindoUsuario){
+    const obterCorDoBotaoPrincipal = () => {
+        if (estaSeguindoOUsuario || estaNoPerfilPessoal) {
             return 'invertido'
         }
-        return 'primaria'
+
+        return 'primaria';
     }
 
-    const manipularCliqueBotaoSeguir = async () => {
-        try{
-            await usuarioService.alternarSeguir(usuario._id)
-            setEstaSeguindoUsuario(!estaSeguindoUsuario)
-            setQuantidadeSeguidores(
-                estaSeguindoUsuario 
-                ? (quantidadeSeguidores - 1)
-                : (quantidadeSeguidores + 1)
+    const manipularCliqueBotaoPrincipal = async () => {
+        if (estaNoPerfilPessoal) {
+            return router.push('/perfil/editar')
+        }
 
-            )
-        }catch(erro){
-            aler(`Errom ao seguir ou deixar de seguir`)
+        try {
+            await usuarioService.alternarSeguir(usuario._id)
+            setQuantidadeSeguidores(
+                estaSeguindoOUsuario
+                    ? (quantidadeSeguidores - 1)
+                    : (quantidadeSeguidores + 1)
+            );
+            setEstaSeguindoOUsuario(!estaSeguindoOUsuario);
+        } catch (error) {
+            alert(`Erro ao seguir/deixar de seguir!`)
         }
     }
 
@@ -56,39 +69,62 @@ export default function CabecalhoPerfil({
         router.back()
     }
 
-    return(
+    const logout = () => {
+        usuarioService.logout()
+        router.push('/')
+    }
 
+    const obterElementoDireitaCabecalho = () => {
+        if (estaNoPerfilPessoal) {
+            return (
+                <Image
+                    src={imgLogout}
+                    alt='icone logout'
+                    onClick={logout}
+                    width={23}
+                    height={23}
+                />
+            );
+        }
 
+        return null
+    }
+
+    return (
         <div className='cabecalhoPerfil largura30pctDesktop'>
             <CabecalhoComAcoes
-                iconeEsquerda={imgSetaEsquerda}
-                aoClicarSetaEsquerda={aoClicarSetaEsquerda}
-                titulo={usuario.nome} 
+                iconeEquerda={estaNoPerfilPessoal ? null : imgSetaEsquerda}
+                aoClicarAcaoEsquerda={aoClicarSetaEsquerda}
+                titulo={usuario.nome}
+                elementoDireita={obterElementoDireitaCabecalho()}
             />
 
-            <hr className='bordaCabecalhoPerfil'/>
+            <hr className='linhaDivisoria' />
 
             <div className='statusPerfil'>
-                <Avatar src={usuario.avatar}/>
+                <Avatar src={usuario.avatar} />
                 <div className='informacoesPerfil'>
                     <div className='statusContainer'>
                         <div className='status'>
                             <strong>{usuario.publicacoes}</strong>
                             <span>Publicações</span>
                         </div>
+
                         <div className='status'>
                             <strong>{quantidadeSeguidores}</strong>
                             <span>Seguidores</span>
                         </div>
+
                         <div className='status'>
                             <strong>{usuario.seguindo}</strong>
                             <span>Seguindo</span>
                         </div>
                     </div>
-                    <Botao
-                        texto={obterTextoBotaoSeguir()}
-                        cor={obterCorDoBotaoSeguir()}
-                        manipularClique={manipularCliqueBotaoSeguir}
+
+                    <Botao 
+                        texto={obterTextoBotaoPrincipal()}
+                        cor={obterCorDoBotaoPrincipal()}
+                        manipularClique={manipularCliqueBotaoPrincipal}
                     />
                 </div>
             </div>
