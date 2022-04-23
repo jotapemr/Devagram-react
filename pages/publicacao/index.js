@@ -77,7 +77,7 @@ function Publicacao() {
 
     const publicar = async () => {
         try {
-            if (!validarFormulario()) {
+            if (!validarFormulario()) {  //validações
                 alert('A descrição precisa de pelo menos 3 caracteres e a imagem precisa estar selecionada.')
                 return
             }
