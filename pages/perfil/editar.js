@@ -8,6 +8,7 @@ import imgAvatarPadrao from '../../public/imagens/avatar.svg';
 import imgLimpar from '../../public/imagens/limpar.svg';
 import UsuarioService from '../../services/UsuarioService';
 import { validarNome } from '../../utils/validadores';
+import CabecalhoPerfil from '../../componentes/CabecalhoPerfil';
 
 const usuarioService = new UsuarioService();
 
