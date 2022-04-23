@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import {useRouter} from 'next/router';
-import {useState, useEffect} from 'react';
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 import imgHomeAtivo from '../../public/imagens/homeAtivo.svg';
 import imgHomeCinza from '../../public/imagens/homeCinza.svg';
 import imgPublicacaoAtivo from '../../public/imagens/publicacaoAtivo.svg';
@@ -64,12 +64,10 @@ export default function Navegacao({ className }) {
         router.push(mapaDeRotas[nomeRota].rotasAtivacao[0])
     }
 
-    //tem a () => pra ser executado somente quando clicado
-    
     return (
         <nav className={`barraNavegacao ${className}`}>
             <ul>
-                <li onClick={() => aoClicarNoIcone('home')}> 
+                <li onClick={() => aoClicarNoIcone('home')}>
                     <Image
                         src={obterImagem('home')}
                         alt='icone home'

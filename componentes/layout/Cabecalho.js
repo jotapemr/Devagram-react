@@ -5,7 +5,7 @@ import imagemLupa from '../../public/imagens/lupa.svg';
 import Navegacao from './Navegacao';
 import ResultadoPesquisa from './ResultadoPesquisa';
 import UsuarioService from '../../services/UsuarioService';
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 
 const usuarioService = new UsuarioService();
 
@@ -31,7 +31,7 @@ export default function Cabecalho() {
             const { data } = await usuarioService.pesquisar(termoPesquisado);
             setResultadoPesquisa(data);
         } catch (e) {
-            alert('Erro ao pesquisar usuário. ' + e?.response?.data?.erro);
+            alert('Erro ao pesquisar usuario. ' + e?.response?.data?.erro);
         }
     }
 

@@ -8,8 +8,7 @@ export default function InputPublico({
     exibirMensagemValidacao = false,
     mensagemValidacao = "",
     aoAlterarValor
-}) 
-    {
+}) {
     return (
         <div className="inputPublicoContainer">
             <div className="inputPublico">

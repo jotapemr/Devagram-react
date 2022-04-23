@@ -1,4 +1,4 @@
-import {useRef, useEffect} from "react"
+import { useRef, useEffect } from "react";
 
 export default function UploadImagem({
     className = '',
@@ -7,45 +7,45 @@ export default function UploadImagem({
     imagemPreviewClassName = '',
     aoSetarAReferencia
 }) {
-    const referenciaInput = useRef(null)
+    const referenciaInput = useRef(null);
 
     useEffect(() => {
         if (!aoSetarAReferencia) {
-            return
+            return;
         }
 
-        aoSetarAReferencia(referenciaInput?.current)
-    }, [referenciaInput?.current])
+        aoSetarAReferencia(referenciaInput?.current);
+    }, [referenciaInput?.current]);
 
     const abrirSeletorArquivos = () => {
-        referenciaInput?.current?.click()
+        referenciaInput?.current?.click();
     }
 
     const aoAleterarImagem = () => {
         if (!referenciaInput?.current?.files?.length) {
-            return
+            return;
         }
 
-        const arquivo = referenciaInput?.current?.files[0]
-        obterUrlDaImagemEAtualizarEstado(arquivo)
+        const arquivo = referenciaInput?.current?.files[0];
+        obterUrlDaImagemEAtualizarEstado(arquivo);
     }
 
     const obterUrlDaImagemEAtualizarEstado = (arquivo) => {
-        const fileReader = new FileReader()
-        fileReader.readAsDataURL(arquivo)
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(arquivo);
         fileReader.onloadend = () => {
             setImagem({
                 preview: fileReader.result,
                 arquivo
-            })
+            });
         }
     }
 
     const aoSoltarAImagem = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-            const arquivo = e.dataTransfer.files[0]
-            obterUrlDaImagemEAtualizarEstado(arquivo)
+            const arquivo = e.dataTransfer.files[0];
+            obterUrlDaImagemEAtualizarEstado(arquivo);
         }
     }
 
@@ -73,5 +73,5 @@ export default function UploadImagem({
                 onChange={aoAleterarImagem}
             />
         </div>
-    )
+    );
 }

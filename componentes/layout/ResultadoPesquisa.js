@@ -10,4 +10,4 @@ export default function ResultadoPesquisa({ nome, email, avatar, onClick, id }) 
             </div>
         </div>
     );
-} 
+}

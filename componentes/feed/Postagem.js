@@ -1,13 +1,14 @@
-import Image from "next/image"
-import Link from "next/link"
-import {useState} from "react"
-import Avatar from "../avatar"
-import imgCurtir from '../../public/imagens/curtir.svg'
-import imgCurtido from '../../public/imagens/curtido.svg'
-import imgComentarioAtivo from '../../public/imagens/comentarioAtivo.svg'
-import imgComentarioCinza from '../../public/imagens/comentarioCinza.svg'
-import {FazerComentario} from "./FazerComentario"
-import FeedService from "../../services/FeedService"
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import Avatar from "../avatar";
+
+import imgCurtir from '../../public/imagens/curtir.svg';
+import imgCurtido from '../../public/imagens/curtido.svg';
+import imgComentarioAtivo from '../../public/imagens/comentarioAtivo.svg';
+import imgComentarioCinza from '../../public/imagens/comentarioCinza.svg';
+import { FazerComentario } from "./FazerComentario";
+import FeedService from "../../services/FeedService";
 
 const tamanhoLimiteDescricao = 90;
 const feedService = new FeedService();
@@ -21,12 +22,13 @@ export default function Postagem({
     usuarioLogado,
     curtidas
 }) {
-    const [curtidasPostagem, setCurtidasPostagem] = useState(curtidas)
-    const [comentariosPostagem, setComentariosPostagem] = useState(comentarios)
+    const [curtidasPostagem, setCurtidasPostagem] = useState(curtidas);
+    const [comentariosPostagem, setComentariosPostagem] = useState(comentarios);
     const [deveExibirSecaoParaComentar, setDeveExibirSecaoParaComentar] = useState(false);
     const [tamanhoAtualDaDescricao, setTamanhoAtualDaDescricao] = useState(
         tamanhoLimiteDescricao
-    )
+    );
+
     const exibirDescricaoCompleta = () => {
         setTamanhoAtualDaDescricao(Number.MAX_SAFE_INTEGER);
     }
@@ -38,7 +40,7 @@ export default function Postagem({
     const obterDescricao = () => {
         let mensagem = descricao.substring(0, tamanhoAtualDaDescricao);
         if (descricaoMaiorQueLimite()) {
-            mensagem += '...'
+            mensagem += '...';
         }
 
         return mensagem;
@@ -53,7 +55,7 @@ export default function Postagem({
     const comentar = async (comentario) => {
         try {
             await feedService.adicionarComentario(id, comentario);
-            setDeveExibirSecaoParaComentar(false)
+            setDeveExibirSecaoParaComentar(false);
             setComentariosPostagem([
                 ...comentariosPostagem,
                 {
@@ -62,29 +64,31 @@ export default function Postagem({
                 }
             ]);
         } catch (e) {
-            alert(`Erro ao fazer comentário! ` + (e?.response?.data?.erro || ''))
+            alert(`Erro ao fazer comentario! ` + (e?.response?.data?.erro || ''));
         }
     }
 
     const usuarioLogadoCurtiuPostagem = () => {
-        return curtidasPostagem.includes(usuarioLogado.id)
+        return curtidasPostagem.includes(usuarioLogado.id);
     }
 
     const alterarCurtida = async () => {
         try {
             await feedService.alterarCurtida(id);
             if (usuarioLogadoCurtiuPostagem()) {
+                // tiro o usuario logado da lista de curtidas
                 setCurtidasPostagem(
                     curtidasPostagem.filter(idUsuarioQueCurtiu => idUsuarioQueCurtiu !== usuarioLogado.id)
-                )
+                );
             } else {
+                // adiciona o usuario logado na lista de curtidas
                 setCurtidasPostagem([
                     ...curtidasPostagem,
                     usuarioLogado.id
                 ]);
             }
         } catch (e) {
-            alert(`Erro ao alterar a curtida! ` + (e?.response?.data?.erro || ''))
+            alert(`Erro ao alterar a curtida! ` + (e?.response?.data?.erro || ''));
         }
     }
 
@@ -92,7 +96,6 @@ export default function Postagem({
         return usuarioLogadoCurtiuPostagem()
             ? imgCurtido
             : imgCurtir;
-        
     }
 
     return (
@@ -136,7 +139,9 @@ export default function Postagem({
                     <p className="descricao">
                         {obterDescricao()}
                         {descricaoMaiorQueLimite() && (
-                            <span onClick={exibirDescricaoCompleta} className="exibirDescricaoCompleta">
+                            <span
+                                onClick={exibirDescricaoCompleta}
+                                className="exibirDescricaoCompleta">
                                 mais
                             </span>
                         )}

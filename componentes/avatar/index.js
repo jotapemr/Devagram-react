@@ -8,6 +8,7 @@ export default function Avatar({ src }) {
 
         return avatarImg.src;
     }
+
     return (
         <img
             src={getAvatar()}

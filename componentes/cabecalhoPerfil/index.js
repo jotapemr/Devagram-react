@@ -1,39 +1,39 @@
-import {useEffect, useState} from 'react'
-import {useRouter} from 'next/router'
-import Image from 'next/image'
-import imgSetaEsquerda from '../../public/imagens/setaEsquerda.svg'
-import imgLogout from '../../public/imagens/logout.svg'
-import CabecalhoComAcoes from '../cabecalhoComAcoes'
-import Botao from '../botao'
-import Avatar from '../avatar'
-import UsuarioService from '../../services/UsuarioService'
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import imgSetaEsquerda from '../../public/imagens/setaEsquerda.svg';
+import imgLogout from '../../public/imagens/logout.svg';
+import CabecalhoComAcoes from '../cabecalhoComAcoes';
+import Botao from '../botao';
+import Avatar from '../avatar';
+import UsuarioService from '../../services/UsuarioService';
 
-const usuarioService = new UsuarioService()
+const usuarioService = new UsuarioService();
 
 export default function CabecalhoPerfil({
     usuario,
     estaNoPerfilPessoal
 }) {
-    const [estaSeguindoOUsuario, setEstaSeguindoOUsuario] = useState(false)
-    const [quantidadeSeguidores, setQuantidadeSeguidores] = useState(0)
-    const router = useRouter()
+    const [estaSeguindoOUsuario, setEstaSeguindoOUsuario] = useState(false);
+    const [quantidadeSeguidores, setQuantidadeSeguidores] = useState(0);
+    const router = useRouter();
 
     useEffect(() => {
         if (!usuario) {
-            return
+            return;
         }
 
-        setEstaSeguindoOUsuario(usuario.segueEsseUsuario)
-        setQuantidadeSeguidores(usuario.seguidores)
-    }, [usuario])
+        setEstaSeguindoOUsuario(usuario.segueEsseUsuario);
+        setQuantidadeSeguidores(usuario.seguidores);
+    }, [usuario]);
 
     const obterTextoBotaoPrincipal = () => {
         if (estaNoPerfilPessoal) {
-            return 'Editar perfil'
+            return 'Editar perfil';
         }
 
         if (estaSeguindoOUsuario) {
-            return 'Deixar de seguir'
+            return 'Deixar de seguir';
         }
 
         return 'Seguir';
@@ -41,7 +41,7 @@ export default function CabecalhoPerfil({
 
     const obterCorDoBotaoPrincipal = () => {
         if (estaSeguindoOUsuario || estaNoPerfilPessoal) {
-            return 'invertido'
+            return 'invertido';
         }
 
         return 'primaria';
@@ -49,11 +49,11 @@ export default function CabecalhoPerfil({
 
     const manipularCliqueBotaoPrincipal = async () => {
         if (estaNoPerfilPessoal) {
-            return router.push('/perfil/editar')
+            return router.push('/perfil/editar');
         }
 
         try {
-            await usuarioService.alternarSeguir(usuario._id)
+            await usuarioService.alternarSeguir(usuario._id);
             setQuantidadeSeguidores(
                 estaSeguindoOUsuario
                     ? (quantidadeSeguidores - 1)
@@ -61,17 +61,17 @@ export default function CabecalhoPerfil({
             );
             setEstaSeguindoOUsuario(!estaSeguindoOUsuario);
         } catch (error) {
-            alert(`Erro ao seguir/deixar de seguir!`)
+            alert(`Erro ao seguir/deixar de seguir!`);
         }
     }
 
     const aoClicarSetaEsquerda = () => {
-        router.back()
+        router.back();
     }
 
     const logout = () => {
-        usuarioService.logout()
-        router.push('/')
+        usuarioService.logout();
+        router.push('/');
     }
 
     const obterElementoDireitaCabecalho = () => {
@@ -87,7 +87,7 @@ export default function CabecalhoPerfil({
             );
         }
 
-        return null
+        return null;
     }
 
     return (

@@ -1,10 +1,10 @@
-import comAutorizacao from '../../hoc/comAtutorizacao';
-import { feed } from '../feed';
+import comAutorizacao from "../../hoc/comAutorizacao";
+import Feed from "../feed";
 
-function Home({usuarioLogado}) {
+function Home({ usuarioLogado }) {
     return (
-        <Feed usuarioLogado={usuarioLogado}/>
-    )
+        <Feed usuarioLogado={usuarioLogado} />
+    );
 }
 
-export default comAutorizacao(Home); 
+export default comAutorizacao(Home);

@@ -1,28 +1,28 @@
-import {useState} from "react"
-import Avatar from "../avatar"
+import { useState } from "react";
+import Avatar from "../avatar";
 
 export function FazerComentario({ usuarioLogado, comentar }) {
-    const [linhas, setLinhas] = useState(1)
-    const [comentario, setComentario] = useState('')
+    const [linhas, setLinhas] = useState(1);
+    const [comentario, setComentario] = useState('');
 
     const aoDigitarComentario = (e) => {
-        const valorInput = e.target.value
-        setComentario(valorInput)
-        setLinhas(valorInput.length > 0 ? 2 : 1)
+        const valorInput = e.target.value;
+        setComentario(valorInput);
+        setLinhas(valorInput.length > 0 ? 2 : 1);
     }
 
     const aoPressionarQualquerTecla = (e) => {
         if (e.key === 'Enter') {
-            fazerComentario()
+            fazerComentario();
         }
     }
 
     const fazerComentario = () => {
         if (comentario.trim().length === 0 || !comentar) {
-            return
+            return;
         }
 
-        comentar(comentario)
+        comentar(comentario);
     }
 
     return (
