@@ -1,66 +1,66 @@
-import Image from 'next/image'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import CabecalhoComAcoes from '../../componentes/cabecalhoComAcoes'
-import UploadImagem from '../../componentes/uploadImagem'
-import comAutorizacao from '../../hoc/comAutorizacao'
-import imgAvatarPadrao from '../../public/imagens/avatar.svg'
-import imgLimpar from '../../public/imagens/limpar.svg'
-import UsuarioService from '../../services/UsuarioService'
-import { validarNome } from '../../utils/validadores'
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import CabecalhoComAcoes from '../../componentes/cabecalhoComAcoes';
+import UploadImagem from '../../componentes/uploadImagem';
+import comAutorizacao from '../../hoc/comAutorizacao';
+import imgAvatarPadrao from '../../public/imagens/avatar.svg';
+import imgLimpar from '../../public/imagens/limpar.svg';
+import UsuarioService from '../../services/UsuarioService';
+import { validarNome } from '../../utils/validadores';
 
 const usuarioService = new UsuarioService();
 
 function EditarPerfil({ usuarioLogado }) {
-    const [avatar, setAvatar] = useState()
-    const [nome, setNome] = useState('')
-    const [inputAvatar, setInputAvatar] = useState()
-    const router = useRouter()
+    const [avatar, setAvatar] = useState();
+    const [nome, setNome] = useState('');
+    const [inputAvatar, setInputAvatar] = useState();
+    const router = useRouter();
 
     useEffect(() => {
         if (!usuarioLogado) {
-            return
+            return;
         }
 
-        setNome(usuarioLogado.nome)
+        setNome(usuarioLogado.nome);
         setAvatar({
             preview: usuarioLogado.avatar
-        })
-    }, [])
+        });
+    }, []);
 
     const atualizarPerfil = async () => {
         try {
             if (!validarNome(nome)) {
-                alert('Nome precisa de pelo menos 2 caracteres!')
+                alert('Nome precisa de pelo menos 2 caracteres!');
                 return;
             }
 
-            const corpoRequisicao = new FormData()
-            corpoRequisicao.append('nome', nome)
+            const corpoRequisicao = new FormData();
+            corpoRequisicao.append('nome', nome);
 
             if (avatar.arquivo) {
-                corpoRequisicao.append('file', avatar.arquivo)
+                corpoRequisicao.append('file', avatar.arquivo);
             }
 
-            await usuarioService.atualizarPerfil(corpoRequisicao)
+            await usuarioService.atualizarPerfil(corpoRequisicao);
             localStorage.setItem('nome', nome);
 
             if (avatar.arquivo) {
-                localStorage.setItem('avatar', avatar.preview)
+                localStorage.setItem('avatar', avatar.preview);
             }
 
-            router.push('/perfil/eu')
+            router.push('/perfil/eu');
         } catch (error) {
-            alert(`Erro ao editar perfil!`)
+            alert(`Erro ao editar perfil!`);
         }
     }
 
     const aoCancelarEdicao = () => {
-        router.push('/perfil/eu')
+        router.push('/perfil/eu');
     }
 
     const abrirSeletorDeArquivos = () => {
-        inputAvatar?.click()
+        inputAvatar?.click();
     }
 
     return (
@@ -113,4 +113,4 @@ function EditarPerfil({ usuarioLogado }) {
     );
 }
 
-export default comAutorizacao(EditarPerfil)
+export default comAutorizacao(EditarPerfil);

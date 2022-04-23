@@ -1,5 +1,3 @@
-/*Para validações*/ 
-
 const validarNome = (nome) => {
     return nome?.toString().length > 2;
 }
@@ -16,7 +14,6 @@ const validarSenha = (senha) => {
 const validarConfirmacaoSenha = (senha, confirmacao) => {
     return validarSenha(senha) && senha === confirmacao;
 }
-
 
 export {
     validarNome,

@@ -1,15 +1,15 @@
-import {useEffect, useState} from 'react'
-import Feed from '../../componentes/feed'
-import {useRouter} from 'next/router'
-import comAutorizacao from '../../hoc/comAutorizacao'
-import CabecalhoPerfil from '../../componentes/cabecalhoPerfil'
-import UsuarioService from '../../services/usuarioService'
+import { useEffect, useState } from 'react';
+import Feed from '../../componentes/feed';
+import { useRouter } from 'next/router';
+import comAutorizacao from '../../hoc/comAutorizacao';
+import CabecalhoPerfil from '../../componentes/cabecalhoPerfil';
+import UsuarioService from '../../services/UsuarioService';
 
 const usuarioService = new UsuarioService();
 
-function Perfil({ usuarioLogado }){
-    const [usuario, setUsuario] = useState({})
-    const router = useRouter()
+function Perfil({ usuarioLogado }) {
+    const [usuario, setUsuario] = useState({});
+    const router = useRouter();
 
     const obterPerfil = async (idUsuario) => {
         try {
@@ -17,15 +17,15 @@ function Perfil({ usuarioLogado }){
                 estaNoPerfilPessoal()
                     ? usuarioLogado.id
                     : idUsuario
-            )
+            );
             return data;
         } catch (error) {
-            alert(`Erro ao obter o perfil do usuário!`)
+            alert(`Erro ao obter o perfil do usuário!`);
         }
     }
 
     const estaNoPerfilPessoal = () => {
-        return router.query.id === 'eu'
+        return router.query.id === 'eu';
     }
 
     useEffect(async () => {
@@ -33,9 +33,9 @@ function Perfil({ usuarioLogado }){
             return;
         }
 
-        const dadosPerfil = await obterPerfil(router.query.id)
-        setUsuario(dadosPerfil)
-    }, [router.query.id])
+        const dadosPerfil = await obterPerfil(router.query.id);
+        setUsuario(dadosPerfil);
+    }, [router.query.id]);
 
     return (
         <div className='paginaPerfil'>
@@ -53,4 +53,4 @@ function Perfil({ usuarioLogado }){
     );
 }
 
-export default comAutorizacao(Perfil)
+export default comAutorizacao(Perfil);
