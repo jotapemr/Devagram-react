@@ -91,7 +91,7 @@ export default function cabecalhoperfil({
     }
 
     return (
-        <div className='cabecalhoPerfil largura30pctDesktop'>
+        <div className='cabecalhoperfil largura30pctDesktop'>
             <CabecalhoComAcoes
                 iconeEquerda={estaNoPerfilPessoal ? null : imgSetaEsquerda}
                 aoClicarAcaoEsquerda={aoClicarSetaEsquerda}
