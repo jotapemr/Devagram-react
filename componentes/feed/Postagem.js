@@ -8,10 +8,10 @@ import imgCurtido from '../../public/imagens/curtido.svg';
 import imgComentarioAtivo from '../../public/imagens/comentarioAtivo.svg';
 import imgComentarioCinza from '../../public/imagens/comentarioCinza.svg';
 import { FazerComentario } from "./FazerComentario";
-import FeedService from "../../services/feedService";
+import feedService from "../../services/feedService";
 
 const tamanhoLimiteDescricao = 90;
-const feedService = new FeedService();
+const feedservice = new feedService();
 
 export default function Postagem({
     id,
@@ -54,7 +54,7 @@ export default function Postagem({
 
     const comentar = async (comentario) => {
         try {
-            await feedService.adicionarComentario(id, comentario);
+            await feedservice.adicionarComentario(id, comentario);
             setDeveExibirSecaoParaComentar(false);
             setComentariosPostagem([
                 ...comentariosPostagem,
@@ -74,7 +74,7 @@ export default function Postagem({
 
     const alterarCurtida = async () => {
         try {
-            await feedService.alterarCurtida(id);
+            await feedservice.alterarCurtida(id);
             if (usuarioLogadoCurtiuPostagem()) {
                 // tiro o usuario logado da lista de curtidas
                 setCurtidasPostagem(

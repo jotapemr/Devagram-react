@@ -4,10 +4,10 @@ import logoHorizontalImg from '../../public/imagens/logoHorizontal.svg';
 import imagemLupa from '../../public/imagens/lupa.svg';
 import Navegacao from './Navegacao';
 import ResultadoPesquisa from './ResultadoPesquisa';
-import UsuarioService from '../../services/usuarioservice';
+import usuarioservice from '../../services/usuarioservice';
 import { useRouter } from 'next/router';
 
-const usuarioService = new UsuarioService();
+const usuarioService = new usuarioservice();
 
 export default function Cabecalho() {
     const [resultadoPesquisa, setResultadoPesquisa] = useState([]);
