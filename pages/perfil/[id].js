@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import Feed from '../../componentes/feed';
 import { useRouter } from 'next/router';
 import comAutorizacao from '../../hoc/comAutorizacao';
-import CabecalhoPerfil from '../../componentes/cabecalhoPerfil';
-import UsuarioService from '../../services/UsuarioService';
+import cabecalhoperfil from '../../componentes/cabecalhoPerfil';
+import usuarioservice from '../../services/UsuarioService';
 
-const usuarioService = new UsuarioService();
+const usuarioService = new usuarioservice();
 
 function Perfil({ usuarioLogado }) {
     const [usuario, setUsuario] = useState({});

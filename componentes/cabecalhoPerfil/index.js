@@ -6,11 +6,11 @@ import imgLogout from '../../public/imagens/logout.svg';
 import CabecalhoComAcoes from '../cabecalhoComAcoes';
 import Botao from '../botao';
 import Avatar from '../avatar';
-import UsuarioService from '../../services/UsuarioService';
+import usuarioservice from '../../services/UsuarioService';
 
-const usuarioService = new UsuarioService();
+const usuarioService = new usuarioservice();
 
-export default function CabecalhoPerfil({
+export default function cabecalhoperfil({
     usuario,
     estaNoPerfilPessoal
 }) {

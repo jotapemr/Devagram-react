@@ -1,6 +1,6 @@
 import DevagramApiService from "./DevagramApiService";
 
-export default class UsuarioService extends DevagramApiService {
+export default class usuarioservice extends DevagramApiService {
     async login(credenciais) {
         const { data } = await this.post('/login', credenciais);
 
