@@ -15,29 +15,30 @@ export default function Cabecalho() {
     const router = useRouter();
 
     let cabecalhoClassName = '';
-    if (window && window.location.pathname !== '/') {
-        cabecalhoClassName = 'desktop';
+    if(window && window.location.pathname !== '/') {
+        cabecalhoClassName = 'desktop'
     }
-
+    
     const aoPesquisar = async (e) => {
         setTermoPesquisado(e.target.value);
         setResultadoPesquisa([]);
-
-        if (e.target.value.length < 3) {
+        
+        if(e.target.value.length < 3 || termoPesquisado.length == '') {
             return;
         }
-
-        try {
+        
+        try {     
             const { data } = await usuarioService.pesquisar(termoPesquisado);
             setResultadoPesquisa(data);
-        } catch (e) {
-            alert('Erro ao pesquisar usuario. ' + e?.response?.data?.erro);
+
+        }catch (error){
+            console.log("Erro ao pesquisar usuário: ", error?.response?.data?.erro);
         }
     }
 
     const aoClicarResultadoPesquisa = (id) => {
-        setResultadoPesquisa([]);
         setTermoPesquisado('');
+        setResultadoPesquisa([]);
         router.push(`/perfil/${id}`);
     }
 
