@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Feed from '../../componentes/feed';
 import { useRouter } from 'next/router';
 import comAutorizacao from '../../hoc/comAutorizacao';
-import cabecalhoperfil from '../../componentes/cabecalhoPerfil';
+import CabecalhoPerfil from '../../componentes/cabecalhoPerfil';
 import usuarioservice from '../../services/usuarioservice';
 
 const usuarioService = new usuarioservice();
