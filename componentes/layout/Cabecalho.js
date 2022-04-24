@@ -7,7 +7,7 @@ import ResultadoPesquisa from './ResultadoPesquisa';
 import usuarioservice from '../../services/usuarioservice';
 import { useRouter } from 'next/router';
 
-const usuarioService = new usuarioservice();
+const usuarioservice = new usuarioservice();
 
 export default function Cabecalho() {
     const [resultadoPesquisa, setResultadoPesquisa] = useState([]);

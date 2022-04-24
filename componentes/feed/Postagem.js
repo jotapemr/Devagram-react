@@ -11,7 +11,7 @@ import { FazerComentario } from "./FazerComentario";
 import feedService from "../../services/feedService";
 
 const tamanhoLimiteDescricao = 90;
-const feedservice = new feedService();
+const feedService = new feedService();
 
 export default function Postagem({
     id,
@@ -54,7 +54,7 @@ export default function Postagem({
 
     const comentar = async (comentario) => {
         try {
-            await feedservice.adicionarComentario(id, comentario);
+            await feedService.adicionarComentario(id, comentario);
             setDeveExibirSecaoParaComentar(false);
             setComentariosPostagem([
                 ...comentariosPostagem,
@@ -74,7 +74,7 @@ export default function Postagem({
 
     const alterarCurtida = async () => {
         try {
-            await feedservice.alterarCurtida(id);
+            await feedService.alterarCurtida(id);
             if (usuarioLogadoCurtiuPostagem()) {
                 // tiro o usuario logado da lista de curtidas
                 setCurtidasPostagem(
