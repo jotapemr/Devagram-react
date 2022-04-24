@@ -28,7 +28,7 @@ function Perfil({ usuarioLogado }) {
         return router.query.id === 'eu';
     }
 
-    useEffect(async () => {
+    useEffect(async() => {
         if (!router.query.id) {
             return;
         }
