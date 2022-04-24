@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Feed from '../../componentes/feed';
 import { useRouter } from 'next/router';
 import comAutorizacao from '../../hoc/comAutorizacao';
-import cabecalhoPerfil from '../../componentes/cabecalhoPerfil';
+import cabecalhoperfil from '../../componentes/cabecalhoperfil';
 import usuarioservice from '../../services/usuarioservice';
 
 const usuarioService = new usuarioservice();
@@ -39,7 +39,7 @@ function Perfil({ usuarioLogado }) {
 
     return (
         <div className='paginaPerfil'>
-            <cabecalhoPerfil
+            <cabecalhoperfil
                 usuarioLogado={usuarioLogado}
                 usuario={usuario}
                 estaNoPerfilPessoal={estaNoPerfilPessoal()}

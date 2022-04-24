@@ -1,5 +1,5 @@
 .paginaPerfil{
-    .cabecalhoPerfil{
+    .cabecalhoperfil{
         background-color: $branco;
 
         .statusPerfil{
@@ -52,14 +52,14 @@
     }
 
     @media screen and (min-width: $desktopBreakpoint){
-        .cabecalhoPerfil{
+        .cabecalhoperfil{
             .cabecalhoComAcoes{
                 >span{
                     display: none !important;
                 }
             }
 
-            .bordaCabecalhoPerfil{
+            .bordaCabecalhoperfil{
                 margin: 0 auto;
                 width: 94%;
             }
