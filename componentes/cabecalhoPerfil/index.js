@@ -6,7 +6,7 @@ import imgLogout from '../../public/imagens/logout.svg';
 import CabecalhoComAcoes from '../cabecalhoComAcoes';
 import Botao from '../botao';
 import Avatar from '../avatar';
-import UsuarioService from '../../service/UsuarioService';
+import UsuarioService from '../../services/UsuarioService';
 
 const usuarioService = new UsuarioService();
 

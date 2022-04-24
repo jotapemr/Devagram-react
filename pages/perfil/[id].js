@@ -3,7 +3,7 @@ import Feed from '../../componentes/feed';
 import { useRouter } from 'next/router';
 import comAutorizacao from '../../hoc/comAutorizacao';
 import cabecalhoPerfil from '../../componentes/cabecalhoPerfil';
-import UsuarioService from '../../service/UsuarioService';
+import UsuarioService from '../../services/UsuarioService';
 
 const usuarioService = new UsuarioService();
 
