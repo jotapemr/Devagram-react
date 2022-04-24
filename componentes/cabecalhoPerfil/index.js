@@ -10,7 +10,7 @@ import usuarioservice from '../../services/usuarioservice';
 
 const usuarioService = new usuarioservice();
 
-export default function CabecalhoPerfil({
+export default function cabecalhoperfil({
     usuario,
     estaNoPerfilPessoal
 }) {
