@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import feedService from "../../services/feedService";
+import feedService from "../../services/feedservice";
 import Postagem from "./Postagem";
 
-const feedService = new feedService();
+const feedservice = new feedService();
 
 export default function Feed({ usuarioLogado, usuarioPerfil }) {
     const [listaDePostagens, setListaDePostagens] = useState([]);
 
     useEffect(async () => {
         setListaDePostagens([]);
-        const { data } = await feedService.carregarPostagens(usuarioPerfil?._id);
+        const { data } = await feedservice.carregarPostagens(usuarioPerfil?._id);
 
         const postagensFormatadas = data.map((postagem) => (
             {
