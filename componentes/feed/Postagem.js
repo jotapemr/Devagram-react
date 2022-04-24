@@ -8,7 +8,7 @@ import imgCurtido from '../../public/imagens/curtido.svg';
 import imgComentarioAtivo from '../../public/imagens/comentarioAtivo.svg';
 import imgComentarioCinza from '../../public/imagens/comentarioCinza.svg';
 import { FazerComentario } from "./FazerComentario";
-import FeedService from "../../services/FeedService";
+import FeedService from "../../services/feedService";
 
 const tamanhoLimiteDescricao = 90;
 const feedService = new FeedService();
