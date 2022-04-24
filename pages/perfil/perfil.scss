@@ -1,47 +1,48 @@
-.paginaPerfil{
-    .cabecalhoperfil{
+.paginaPerfil {
+    .cabecalhoPerfil {
         background-color: $branco;
 
-        .statusPerfil{
+        .statusPerfil {
             display: flex;
             align-items: center;
             padding: 16px 16px 24px;
 
-            .avatar{
+            .avatar {
                 height: 85px;
                 width: 85px;
                 margin-right: 24px;
+
                 border: solid 3px transparent;
                 background-image: linear-gradient(to bottom, white, white), radial-gradient(circle at top center, $corPrimaria,$corPrimaria3);
                 background-origin: border-box;
                 background-clip: content-box, border-box;
             }
         
-            .informacoesPerfil{
+            .informacoesPerfil {
                 flex: 1;
                 display: flex;
                 flex-direction: column;
 
-                .btn{
+                .btn {
                     margin-top: 12px;
                     padding: 6px;
                     font-size: 12px;
                     border-radius: 4px;
                 }
 
-                .statusContainer{
+                .statusContainer {
                     display: flex;
                     justify-content: space-around;
 
-                    .status{
+                    .status {
                         text-align: center;
 
-                        >strong{
+                        > strong {
                             font-size: 14px;
                             display: block;
                         }
 
-                        >span{
+                        > span {
                             font-size: 12px;
                             display: block;
                         }
@@ -51,27 +52,22 @@
         }
     }
 
-    @media screen and (min-width: $desktopBreakpoint){
-        .cabecalhoperfil{
-            .cabecalhoComAcoes{
-                >span{
+    @media screen and (min-width: $desktopBreakpoint) {
+        .cabecalhoPerfil {
+            .cabecalhoComAcoes {
+                > span {
                     display: none !important;
                 }
             }
-
-            .bordaCabecalhoperfil{
-                margin: 0 auto;
-                width: 94%;
-            }
             
-            .statusPerfil{
-                .avatar{
+            .statusPerfil {
+                .avatar {
                     width: 90px;
                     height: 90px;
                 }
 
-                .informacoesPerfil{
-                    .btn{
+                .informacoesPerfil {
+                    .btn {
                         padding: 8px;
                     }
                 }
@@ -81,39 +77,39 @@
     }
 }
 
-.paginaEditarPerfil{
+.paginaEditarPerfil {
     background-color: $branco;
 
-    .conteudoPaginaEditarPerfil{
-        .edicaoAvatar{
+    .conteudoPaginaEditarPerfil {
+        .edicaoAvatar {
             margin: 16px 0px;
             text-align: center;
             cursor: pointer;
 
-            .avatar{
+            .avatar {
                 width: 80px;
                 height: 80px;
                 margin-bottom: 2px;
             }
 
-            span{
+            span {
                 font-size: 12px;
                 color: $corPrimaria;
                 text-decoration: underline;
             }
         }
 
-        .edicaoNome{
+        .edicaoNome {
             margin: 16px 0px;
             display: flex;
             align-items: center;
             padding: 0px 16px;
 
-            label{
+            label {
                 color: $cinza3;
             }
 
-            input{
+            input {
                 flex: 1;
                 border: none;
                 outline: none;
@@ -123,24 +119,25 @@
         }
     }
 
-    @media screen and (min-width: $desktopBreakpoint){
+    @media screen and (min-width: $desktopBreakpoint) {
         display: flex;
         height: 100%;
         flex-direction: column;
 
-        .conteudoPaginaEditarPerfil{
+        .conteudoPaginaEditarPerfil {
             flex: 1;
 
-            .edicaoAvatar{
-                .avatar{
+            .edicaoAvatar {
+                .avatar {
                     width: 120px;
                     height: 120px;
                 }
 
-                span{
+                span {
                     font-size: 14px;
                 }
             }
+
         }
     }
 }

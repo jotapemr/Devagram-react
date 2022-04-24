@@ -6,10 +6,10 @@ import UploadImagem from '../../componentes/uploadImagem';
 import comAutorizacao from '../../hoc/comAutorizacao';
 import imgAvatarPadrao from '../../public/imagens/avatar.svg';
 import imgLimpar from '../../public/imagens/limpar.svg';
-import usuarioservice from '../../services/usuarioservice';
+import UsuarioService from '../../services/UsuarioService';
 import { validarNome } from '../../utils/validadores';
 
-const usuarioService = new usuarioservice();
+const usuarioService = new UsuarioService();
 
 function EditarPerfil({ usuarioLogado }) {
     const [avatar, setAvatar] = useState();

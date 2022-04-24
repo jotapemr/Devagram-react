@@ -4,12 +4,12 @@ import logoHorizontalImg from '../../public/imagens/logoHorizontal.svg';
 import imagemLupa from '../../public/imagens/lupa.svg';
 import Navegacao from './Navegacao';
 import ResultadoPesquisa from './ResultadoPesquisa';
-import usuarioservice from '../../services/usuarioservice';
+import UsuarioService from '../../services/UsuarioService';
 import { useRouter } from 'next/router';
 
-const usuarioService = new usuarioservice();
+const usuarioService = new UsuarioService();
 
-export default function cabecalho() {
+export default function Cabecalho() {
     const [resultadoPesquisa, setResultadoPesquisa] = useState([]);
     const [termoPesquisado, setTermoPesquisado] = useState('');
     const router = useRouter();

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { LoadingHelper } from '../helpers/LoadingHelper';
 
-export default class devagramApiService {
+export default class DevagramApiService {
     constructor() {
         this.axios = axios.create({
             baseURL: process.env.NEXT_PUBLIC_API_URL + '/api'

@@ -1,75 +1,70 @@
-.paginaPublicacao{
+.paginaPublicacao {
     background-color: $branco;
 
-    .cabecalhoComAcoes{
-        &.segundaEtapa{
+    .cabecalhoComAcoes {
+        &.segundaEtapa {
             > span {
                 cursor: pointer;
             }
 
-            h3{
+            h3 {
                 padding-left: 17%;
             }
         }
     }
 
-    .conteudoPaginaPublicacao{
-        .primeiraEtapa{
+    .conteudoPaginaPublicacao {
+        .primeiraEtapa {
             display: flex;
             flex-direction: column;
             justify-content: center;
 
-            .uploadImagemContainer{
+            .uploadImagemContainer {
                 text-align: center;
 
-                .imagemPreviewContainer{
+                .imagemPreviewContainer {
                     margin: 30px auto;
 
                     img {
                         object-fit: cover;
                     }
 
-                    .previewImagemPublicacao{
+                    .previewImagemPublicacao {
                         height: 150px;
                         width: 150px;
                     }
 
-                    .previewImagemSelecionada{
+                    .previewImagemSelecionada {
                         height: 250px;
                         width: 250px;
                     }
                 }
             }
 
-
-
-
-            .btn{
+            .btn {
                 background-color: $corPrimaria3;
                 color: $branco;
                 width: 70%;
                 margin: auto;
                 padding: 12px;
 
-                &:hover{
+                &:hover {
                     border: none;
                     opacity: 0.8;
                 }
             }
         }
 
-
-
-        .segundaEtapa{
+        .segundaEtapa {
             display: flex;
             padding: 16px;
 
-            .uploadImagemContainer{
-                .imagemPreviewContainer{
+            .uploadImagemContainer {
+                .imagemPreviewContainer {
                     width: 80px;
                     height: 80px;
 
-                    img{
+                    img {
                         height: 100%;
                         width: 100%;
                         object-fit: cover;
@@ -77,9 +72,7 @@
                 }
             }
 
-
-
-            textarea{
+            textarea {
                 border: none;
                 outline: none;
                 resize: none;
@@ -92,34 +85,31 @@
         }
     }
 
-
-    
-
-    @media screen and (min-width: $desktopBreakpoint){
+    @media screen and (min-width: $desktopBreakpoint) {
         display: flex;
         flex-direction: column;
         height: 100%;
 
-        .conteudoPaginaPublicacao{
-            .primeiraEtapa{
+        .conteudoPaginaPublicacao {
+            .primeiraEtapa {
                 cursor: pointer;
 
-                .uploadImagemContainer{
-                    .imagemPreviewContainer{
+                .uploadImagemContainer {
+                    .imagemPreviewContainer {
                         margin-bottom: 20px;
                     }
                 }
 
-                .textoDragAndDrop{
+                .textoDragAndDrop {
                     text-align: center;
                     color: $cinza4;
                     margin-bottom: 30px;
                 }
             }
 
-            .segundaEtapa{
-                .uploadImagemContainer{
-                    .imagemPreviewContainer{
+            .segundaEtapa {
+                .uploadImagemContainer {
+                    .imagemPreviewContainer {
                         width: 160px;
                         height: 160px;
                     }

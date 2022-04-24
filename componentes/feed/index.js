@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import feedservice from "../../services/feedservice";
+import FeedService from "../../services/FeedService";
 import Postagem from "./Postagem";
 
-const feedService = new feedservice();
+const feedService = new FeedService();
 
 export default function Feed({ usuarioLogado, usuarioPerfil }) {
     const [listaDePostagens, setListaDePostagens] = useState([]);

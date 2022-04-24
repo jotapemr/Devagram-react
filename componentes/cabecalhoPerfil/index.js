@@ -6,11 +6,11 @@ import imgLogout from '../../public/imagens/logout.svg';
 import CabecalhoComAcoes from '../cabecalhoComAcoes';
 import Botao from '../botao';
 import Avatar from '../avatar';
-import usuarioservice from '../../services/usuarioservice';
+import UsuarioService from '../../services/UsuarioService';
 
-const usuarioService = new usuarioservice();
+const usuarioService = new UsuarioService();
 
-export default function cabecalhoperfil({
+export default function CabecalhoPerfil({
     usuario,
     estaNoPerfilPessoal
 }) {
@@ -91,7 +91,7 @@ export default function cabecalhoperfil({
     }
 
     return (
-        <div className='cabecalhoperfil largura30pctDesktop'>
+        <div className='cabecalhoPerfil largura30pctDesktop'>
             <CabecalhoComAcoes
                 iconeEquerda={estaNoPerfilPessoal ? null : imgSetaEsquerda}
                 aoClicarAcaoEsquerda={aoClicarSetaEsquerda}

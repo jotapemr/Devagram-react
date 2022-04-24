@@ -1,11 +1,12 @@
-import {useState} from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Botao from '../../componentes/botao'
+import Botao from "../../componentes/botao";
 import InputPublico from "../../componentes/inputPublico";
-import UploadImagem from "../../componentes/uploadimagem";
-import {validarEmail, validarSenha, validarNome, validarConfirmacaoSenha} from "../../utils/validadores";
-import UsuarioService from "../../services/usuarioService";
+import UploadImagem from "../../componentes/uploadImagem";
+import { validarEmail, validarSenha, validarNome, validarConfirmacaoSenha } from "../../utils/validadores";
+import UsuarioService from "../../services/UsuarioService";
+
 import imagemLogo from "../../public/imagens/logo.svg";
 import imagemUsuarioAtivo from "../../public/imagens/usuarioAtivo.svg";
 import imagemEnvelope from "../../public/imagens/envelope.svg";
@@ -22,7 +23,7 @@ export default function Cadastro() {
     const [senha, setSenha] = useState("");
     const [confirmacaoSenha, setConfirmacaoSenha] = useState("");
     const [estaSubmetendo, setEstaSubmetendo] = useState(false);
-    const router = useRouter
+    const router = useRouter();
 
     const validarFormulario = () => {
         return (
@@ -50,13 +51,14 @@ export default function Cadastro() {
             if (imagem?.arquivo) {
                 corpoReqCadastro.append("file", imagem.arquivo);
             }
+
             await usuarioService.cadastro(corpoReqCadastro);
             await usuarioService.login({
                 login: email,
                 senha
-            })
-
-            router.push('/')
+            });
+            
+            router.push('/');
         } catch (error) {
             alert(
                 "Erro ao cadastrar usuario. " + error?.response?.data?.erro
@@ -138,5 +140,5 @@ export default function Cadastro() {
                 </div>
             </div>
         </section>
-    )
-} 
+    );
+}

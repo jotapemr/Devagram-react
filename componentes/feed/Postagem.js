@@ -8,10 +8,10 @@ import imgCurtido from '../../public/imagens/curtido.svg';
 import imgComentarioAtivo from '../../public/imagens/comentarioAtivo.svg';
 import imgComentarioCinza from '../../public/imagens/comentarioCinza.svg';
 import { FazerComentario } from "./FazerComentario";
-import feedservice from "../../services/feedservice";
+import FeedService from "../../services/FeedService";
 
 const tamanhoLimiteDescricao = 90;
-const feedService = new feedservice();
+const feedService = new FeedService();
 
 export default function Postagem({
     id,
