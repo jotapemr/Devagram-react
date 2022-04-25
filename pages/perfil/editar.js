@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import CabecalhoComAcoes from '../../componentes/cabecalhoComAcoes';
-import UploadImagem from '../../componentes/uploadImagem';
+import upload from '../../componentes/upload';
 import comAutorizacao from '../../hoc/comAutorizacao';
 import imgAvatarPadrao from '../../public/imagens/avatar.svg';
 import imgLimpar from '../../public/imagens/limpar.svg';
