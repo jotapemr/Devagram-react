@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRouter } from 'next/router';
 import Botao from "../../componentes/botao";
 import CabecalhoComAcoes from "../../componentes/cabecalhoComAcoes";
-import upload from "../../componentes/upload";
+import Upload from "../../componentes/Upload";
 import comAutorizacao from "../../hoc/comAutorizacao";
 import imagemPublicacao from '../../public/imagens/imagemPublicacao.svg';
 import imagemSetaEsquerda from '../../public/imagens/setaEsquerda.svg';
@@ -120,7 +120,7 @@ function Publicacao() {
                 {estaNaEtapaUm()
                     ? (
                         <div className="primeiraEtapa">
-                            <UploadImagem
+                            <Upload
                                 setImagem={setImagem}
                                 aoSetarAReferencia={setInputImagem}
                                 imagemPreviewClassName={!imagem ? 'previewImagemPublicacao' : 'previewImagemSelecionada'}

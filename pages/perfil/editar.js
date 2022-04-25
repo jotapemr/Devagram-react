@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import CabecalhoComAcoes from '../../componentes/cabecalhoComAcoes';
-import upload from '../../componentes/upload';
+import Upload from '../../componentes/Upload';
 import comAutorizacao from '../../hoc/comAutorizacao';
 import imgAvatarPadrao from '../../public/imagens/avatar.svg';
 import imgLimpar from '../../public/imagens/limpar.svg';
@@ -77,7 +77,7 @@ function EditarPerfil({ usuarioLogado }) {
                 <hr className='linhaDivisoria' />
 
                 <div className='edicaoAvatar'>
-                    <UploadImagem
+                    <Upload
                         setImagem={setAvatar}
                         imagemPreview={avatar?.preview || imgAvatarPadrao.src}
                         imagemPreviewClassName='avatar'

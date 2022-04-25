@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Botao from "../../componentes/botao";
 import InputPublico from "../../componentes/inputPublico";
-import upload from "../../componentes/upload";
+import Upload from "../../componentes/Upload";
 import { validarEmail, validarSenha, validarNome, validarConfirmacaoSenha } from "../../utils/validadores";
 import UsuarioService from "../../services/UsuarioService";
 
@@ -81,7 +81,7 @@ export default function Cadastro() {
 
             <div className="conteudoPaginaPublica">
                 <form onSubmit={aoSubmeter}>
-                    <UploadImagem
+                    <Upload
                         imagemPreviewClassName="avatar avatarPreview"
                         imagemPreview={imagem?.preview || imagemAvatar.src}
                         setImagem={setImagem}
