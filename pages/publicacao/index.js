@@ -137,7 +137,7 @@ function Publicacao() {
                     ) : (
                         <>
                             <div className="segundaEtapa">
-                                <UploadImagem
+                                <Upload
                                     setImagem={setImagem}
                                     imagemPreview={imagem?.preview}
                                 />
