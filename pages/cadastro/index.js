@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Botao from "../../componentes/botao";
 import InputPublico from "../../componentes/inputPublico";
-import Upload from "../../componentes/Upload";
+import Upload from "../../componentes/upload";
 import { validarEmail, validarSenha, validarNome, validarConfirmacaoSenha } from "../../utils/validadores";
 import UsuarioService from "../../services/UsuarioService";
 

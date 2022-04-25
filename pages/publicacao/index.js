@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRouter } from 'next/router';
 import Botao from "../../componentes/botao";
 import CabecalhoComAcoes from "../../componentes/cabecalhoComAcoes";
-import Upload from "../../componentes/Upload";
+import Upload from "../../componentes/upload";
 import comAutorizacao from "../../hoc/comAutorizacao";
 import imagemPublicacao from '../../public/imagens/imagemPublicacao.svg';
 import imagemSetaEsquerda from '../../public/imagens/setaEsquerda.svg';
