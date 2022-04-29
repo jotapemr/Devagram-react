@@ -22,7 +22,6 @@ export default function cabecalhoPerfil({
         if (!usuario) {
             return;
         }
-
         setEstaSeguindoOUsuario(usuario.segueEsseUsuario);
         setQuantidadeSeguidores(usuario.seguidores);
     }, [usuario]);
