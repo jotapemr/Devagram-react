@@ -37,7 +37,7 @@ function Perfil({ usuarioLogado }) {
             setUsuario(dadosPerfil);
         }
         fetchData();
-      }, [router.query.id]); 
+      }, obterPerfil[router.query.id]); 
 
     return (
         <div className='paginaPerfil'>
