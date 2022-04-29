@@ -26,7 +26,7 @@ function EditarPerfil({ usuarioLogado }) {
         setAvatar({
             preview: usuarioLogado.avatar
         });
-    },[usuarioLogado]);
+    },[]);
 
     const atualizarPerfil = async () => {
         try {
