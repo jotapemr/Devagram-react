@@ -120,7 +120,7 @@ function Publicacao() {
                 {estaNaEtapaUm()
                     ? (
                         <div className="primeiraEtapa">
-                            <UploadImagem
+                            <Upload
                                 setImagem={setImagem}
                                 aoSetarAReferencia={setInputImagem}
                                 imagemPreviewClassName={!imagem ? 'previewImagemPublicacao' : 'previewImagemSelecionada'}
@@ -137,7 +137,7 @@ function Publicacao() {
                     ) : (
                         <>
                             <div className="segundaEtapa">
-                                <UploadImagem
+                                <Upload
                                     setImagem={setImagem}
                                     imagemPreview={imagem?.preview}
                                 />
