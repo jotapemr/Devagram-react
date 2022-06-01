@@ -5,9 +5,9 @@ Fullstack project developed for studies, inspired by instagram.
 
 ## Used technologies
 
-- Reactjs 17.0.2
-- Nesxtjs 12.1.5
-- Nodejs 16.14.2
+- React.js 17.0.2
+- Nesxt.js 12.1.5
+- Node.js 16.14.2
 - Sass 1.50.0
 
 ### Development environment configuration
