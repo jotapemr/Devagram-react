@@ -1,7 +1,8 @@
 # Devagram
 
 Fullstack project developed for studies, inspired by instagram.
- <a href="https://github.com/jotapemr/Devagram">Link of backend</a>
+ <a href="https://github.com/jotapemr/Devagram">Link of backend,</a>
+ visit the website at this <a hred=" "link</a>
 
 ## Used technologies
 
